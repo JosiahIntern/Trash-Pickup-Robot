@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Root name="R+Motion" version="2.0.0">
+  <DesignRoot name="" controller="CM-530">
+    <skeleton>
+      <joint motor="AX-12A" id="3" enable="True" id2="3" mirror="-1" mul_3d="1" mul_mirror="1" />
+      <joint motor="AX-12A" id="4" enable="True" id2="4" mirror="-1" mul_3d="1" mul_mirror="1" />
+      <joint motor="AX-12A" id="7" enable="True" id2="7" mirror="-1" mul_3d="1" mul_mirror="1" />
+    </skeleton>
+    <position>
+      <joint position_x="0" position_y="0" position_z="0" nickName="joint" />
+      <joint position_x="-45" position_y="0" position_z="0" nickName="joint" />
+      <joint position_x="-90" position_y="0" position_z="0" nickName="joint" />
+    </position>
+    <PicturePath>
+      <picture path="" />
+    </PicturePath>
+  </DesignRoot>
+  <FlowRoot>
+    <Flow name="trashpickup" return="-1">
+      <units>
+        <unit main="grab and lift" mainSpeed="0.7" loop="1" exit="" exitSpeed="1" callSite="False" />
+      </units>
+    </Flow>
+  </FlowRoot>
+  <PageRoot>
+    <Page name="grab and lift">
+      <param compileSize="1" acceleration="32" softness="5 5 5" />
+      <steps>
+        <step frame="1" pose="0 -5.56 -9.08" />
+        <step frame="128" pose="78.45 -91.57 -9.08" />
+        <step frame="280" pose="89.69 -91.57 101.28" />
+        <step frame="407" pose="69.95 -59.83 106.03" />
+        <step frame="615" pose="0 0 -13.29" />
+      </steps>
+    </Page>
+    <Page name="lift">
+      <param compileSize="1" acceleration="32" softness="5 5 5" />
+      <steps>
+        <step frame="2" pose="0 -5.56 107.1" />
+      </steps>
+    </Page>
+  </PageRoot>
+  <GroupRoot>
+    <Group name="None">
+      <param weights="0 0 0" />
+    </Group>
+    <Group name="All">
+      <param weights="1 1 1" />
+    </Group>
+  </GroupRoot>
+  <BucketRoot>
+    <Bucket name="grab">
+      <callFlows>
+        <callFlow callIndex="1" subIndex="0" exitIndex="0" flow="trashpickup" />
+      </callFlows>
+    </Bucket>
+  </BucketRoot>
+</Root>
